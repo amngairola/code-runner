@@ -1,73 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 
-import React from "react";
-import { Container, Logo, LogoutBtn } from "../index";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status);
-  const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const navItems = [
-    {
-      name: "Home",
-      //   slug: "/",
-      //   active: true,
-    },
-    {
-      name: "Login",
-      //   slug: "/login",
-      //   active: !authStatus,
-    },
-    {
-      name: "Signup",
-      //   slug: "/signup",
-      //   active: !authStatus,
-    },
-    {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-    },
-    {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-    },
-  ];
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const [dropdown, setDropdown] = useState("Languages");
+
+  const ChangeValue = (value) => {
+    setDropdown(value);
+    setIsDropdownOpen(false);
+  };
 
   return (
-    <header className="py-3 shadow bg-gradient-to-r from-blue-500 to-purple-500">
-      <Container>
-        <nav className="flex items-center justify-between">
-          <div className="mr-4">
-            <Link to="/">
-              <Logo width="70px" />
-            </Link>
-          </div>
-          <ul className="flex ml-auto">
-            {navItems.map((item) =>
-              item.active ? (
-                <li key={item.name}>
-                  <button
-                    onClick={() => navigate(item.slug)}
-                    className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full text-white"
-                  >
-                    {item.name}
-                  </button>
-                </li>
-              ) : null
-            )}
-            {authStatus && (
-              <li>
-                <LogoutBtn />
-              </li>
-            )}
-          </ul>
-        </nav>
-      </Container>
+    <header className="py-2 shadow bg-gradient-to-r from-blue-500 to-purple-500">
+      <div className=" flex items-center justify-between">
+        <div className="text-xl fint-bold">Logo</div>
+        {/* dropdown */}
+        <div className="relative inline-block text-left">
+          <button
+            onClick={toggleDropdown}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-700 hover:bg-gray-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-gray-800"
+          >
+            {dropdown}
+          </button>
+          {isDropdownOpen && (
+            <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+              <div className="py-1">
+                <button
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => ChangeValue("java")}
+                >
+                  java
+                </button>
+                <button
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => ChangeValue("c++")}
+                >
+                  c++
+                </button>
+                <button
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => ChangeValue("python")}
+                >
+                  python
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+        {/*button */}
+        <button className="ml-4 mr-4 px-3 py-4 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-800">
+          Run
+        </button>
+      </div>
     </header>
   );
 }
