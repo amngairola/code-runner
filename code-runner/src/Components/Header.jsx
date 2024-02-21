@@ -65,12 +65,7 @@ function Header() {
           )}
         </div>
         {/*button */}
-        <button
-          className="ml-4 mr-4 px-3 py-4 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-800"
-          onClick={() => ChangeTheam()}
-        >
-          {Mode}
-        </button>
+        <TheamButton />
 
         <button className="ml-4 mr-4 px-3 py-4 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-800">
           Run
