@@ -1,4 +1,3 @@
-i; // ApiContext.js
 import React, { createContext, useContext, useState } from "react";
 
 const ApiContext = createContext();
@@ -46,4 +45,4 @@ export const ApiProvider = ({ children }) => {
   );
 };
 
-export const useApi = () => useContext(ApiContext);
+export const useContextApi = () => useContext(ApiContext);
