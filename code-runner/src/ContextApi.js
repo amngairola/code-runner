@@ -1,12 +1,8 @@
+i; // ApiContext.js
 import React, { createContext, useContext, useState } from "react";
 
-// Create a context
-const context = createContext();
-const clientId = "527e4dc4253d21712a7dc7245d1d61c0";
-const clientSecret =
-  "347e4fb9199d6d8779587b99d2b205109d089197cd57a773e8f221ac2732ff5b";
+const ApiContext = createContext();
 
-// Create context provider
 export const ApiProvider = ({ children }) => {
   const [script, setScript] = useState("");
   const [language, setLanguage] = useState("");
@@ -22,8 +18,8 @@ export const ApiProvider = ({ children }) => {
         body: JSON.stringify({
           script,
           language,
-          clientId: clientId,
-          clientSecret: clientSecret,
+          clientId: "your_client_id",
+          clientSecret: "your_client_secret",
         }),
       });
 
@@ -35,7 +31,7 @@ export const ApiProvider = ({ children }) => {
   };
 
   return (
-    <context.Provider
+    <ApiContext.Provider
       value={{
         script,
         setScript,
@@ -46,10 +42,8 @@ export const ApiProvider = ({ children }) => {
       }}
     >
       {children}
-    </context.Provider>
+    </ApiContext.Provider>
   );
 };
 
-export default function useApi() {
-  return useContext(context);
-}
+export const useApi = () => useContext(ApiContext);

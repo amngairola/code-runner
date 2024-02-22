@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useApi } from "../ContextApi";
 
 function Input() {
-  const [code, setCode] = useState("");
+  const { setScript } = useApi();
+  const [scriptInput, setScriptInput] = useState("");
 
-  const handleChange = (event) => {
-    setCode(event.target.value);
+  const handleScriptChange = (event) => {
+    setScriptInput(event.target.value);
+  };
+  const handleSubmit = () => {
+    setScript(script);
   };
 
   return (
@@ -13,10 +18,16 @@ function Input() {
         <textarea
           className="w-full h-screen px-3 py-2 text-base leading-normal bg-white border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent  "
           placeholder="Write your code here..."
-          value={code}
-          onChange={handleChange}
+          value={scriptInput}
+          onChange={handleScriptChange}
         ></textarea>
       </div>
+      <button
+        className="ml-4 mr-4 px-3 py-4 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-800"
+        onClick={handleSubmit}
+      >
+        Done?
+      </button>
     </div>
   );
 }

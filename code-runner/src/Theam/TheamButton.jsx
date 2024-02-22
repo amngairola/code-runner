@@ -1,5 +1,5 @@
 import React from "react";
-import useTheam from "../Context/Theam";
+import useTheam from "../Theam/TheamContext";
 
 function TheamButton() {
   const { theamMode, darkTheam, lightTheam } = useTheam();
