@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 
 const ApiContext = createContext();
+export const useContextApi = () => useContext(ApiContext);
 
 export const ApiProvider = ({ children }) => {
   const [script, setScript] = useState("");
@@ -44,5 +45,3 @@ export const ApiProvider = ({ children }) => {
     </ApiContext.Provider>
   );
 };
-
-export const useContextApi = () => useContext(ApiContext);

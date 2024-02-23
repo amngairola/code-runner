@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Input from "./Input";
 import Output from "./Output";
+import { ApiProvider } from "../ContextApi";
 
 function Container() {
   return (
-    <div className="flex items-center justify-between h-screen">
-      <Input />
-      <Output />
-    </div>
+    <ApiProvider>
+      <div className="flex items-center justify-between h-screen">
+        <Input />
+        <Output />
+      </div>
+    </ApiProvider>
   );
 }
 

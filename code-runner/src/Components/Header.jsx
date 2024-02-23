@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import TheamButton from "../Theam/TheamButton";
-import { useApi } from "../ContextApi";
+import { useContextApi } from "../ContextApi";
 
 function Header() {
-  const { executeScript } = useApi();
+  const { executeScript } = useContextApi();
   const [selectedLanguage, setSelectedLanguage] = useState("Languages");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown
 
